@@ -1,5 +1,4 @@
 
-
 {Crear un procedimiento que reciba como parámetro el archivo del punto 2,  y
 genere un archivo de texto con el contenido del mismo.}
 
@@ -8,12 +7,17 @@ Program Ejercicio4;
 Type 
   archivoBinario = file Of integer;
 
-Procedure ConvertirArchivo(Var archivoBin: archivoBinario; nombreArchivoText: String);
+Procedure ConvertirArchivo(Var archivoBin: archivoBinario);
 
 Var 
   archivoTexto: Text;
   info: integer;
+  nombreArchivoText: String;
 Begin
+
+  writeln('Ingrese nombre del archivo de texto:');
+  readln(nombreArchivoText);
+
   assign(archivoTexto, nombreArchivoText + '.txt');
   rewrite(archivoTexto);
 
@@ -27,7 +31,7 @@ Begin
 End;
 
 Var 
-  nombreArchivoBin, nombreArchivoText: string;
+  nombreArchivoBin:string;
   archivoBin: archivoBinario;
 Begin
   writeln('Ingrese nombre del archivo binario:');
@@ -37,10 +41,7 @@ Begin
   reset(archivoBin);
 
 
-  writeln('Ingrese nombre del archivo de texto:');
-  readln(nombreArchivoText);
-
-  ConvertirArchivo(archivoBin, nombreArchivoText);
+  ConvertirArchivo(archivoBin);
   writeln('Archivo de texto creado exitosamente.');
 
   close(archivoBin);
